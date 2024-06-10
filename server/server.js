@@ -4,16 +4,24 @@ const PORT = process.env.PORT;
 const dbURI = process.env.dbURI;
 const mongoose = require("mongoose");
 
+const userRouts = require("./routes/userRoute");
+
+const notFoundHandler = require("./middlewares/404");
+
+
+const errorHandler = require("./middlewares/500");
+const Protected = require("./middlewares/Protected");
 
 
 const app = express();
-app.use(cors());
+app.use(express.json());
 
+app.use(cors());
+app.use(userRouts)
 
 const path = require("path");
 app.use("/public", express.static(path.join(__dirname, "public")));
 
-app.use(express.json());
 
 
 app.get("/", (req, res) => {
