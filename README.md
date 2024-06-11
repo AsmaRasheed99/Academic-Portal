@@ -1,4 +1,4 @@
-# Academic-Portal
+ Academic-Portal
 
 This is a MERN (MongoDB, Express.js, React.js, Node.js) project [called MindQuest and is designed as an academic portal to allows students and teachers to manage courses where JWT was used for authentication ].
 
