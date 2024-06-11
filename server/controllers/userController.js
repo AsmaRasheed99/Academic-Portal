@@ -87,9 +87,29 @@ const protected = async (req, res) => {
   });
 };
 
+const getAllTeachers = async (req, res) => {
+  try {
+    const teachers = await User.find({role: "teacher"})
+    return res.json(teachers)
+  } catch (error) {
+    return res.status(500).json({message: "Failed to find teachers"})
+
+  }
+}
+const getAllStudents = async (req, res) => {
+  try {
+    const students = await User.find({role: "student"})
+    return res.json(students)
+  } catch (error) {
+    return res.status(500).json({message: "Failed to find students"})
+  }
+}
 module.exports = {
   CreateUser,
   getOneUser,
   protected,
   UserLogin,
+  getAllTeachers,
+  getAllStudents
+
 };
