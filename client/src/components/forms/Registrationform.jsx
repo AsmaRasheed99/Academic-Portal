@@ -224,7 +224,7 @@ const Registrationform = () => {
           </Link>
         </Label>
       </div>
-      <Button color="dark" type="submit">
+      <Button  type="submit">
         Create an account
       </Button>
       <span className="text-dark font-semibold text-xs px-4">

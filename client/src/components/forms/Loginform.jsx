@@ -55,7 +55,7 @@ const Loginform = () => {
         />
       </div>
   
-      <Button color="dark" type="submit">
+      <Button  type="submit">
         Login
       </Button>
 
