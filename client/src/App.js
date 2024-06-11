@@ -5,13 +5,14 @@ import Homepage from './main-pages/Homepage'
 import Registrationpage from './main-pages/Registrationpage'
 import LoginPage from './main-pages/LoginPage'
 import axios from 'axios'
-import AddCourseForm from './components/forms/AddCourseForm'
 import Courses from './main-pages/Courses'
+import Course from './main-pages/Course'
+import AddCourse from './main-pages/AddCourse'
+import UpdateCourses from './main-pages/UpdateCourses'
 
 function App() {
   const [UserApp, setUserApp] = useState("");
-
-  // console.log( UserApp)
+console.log(UserApp)
   const fetchProtectedData = async () => {
     try {
       const token = localStorage.getItem("auth");
@@ -35,12 +36,14 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Navbar />
+      <Navbar UserApp={UserApp} />
       <Routes>
-        <Route path="/" element={<Homepage />} />
+        <Route path="/" element={<Homepage UserApp={UserApp}/>} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<Registrationpage />} />
-        <Route path="/courses" element={<AddCourseForm UserApp={UserApp} />} />
+        <Route path="/AddCourse" element={<AddCourse UserApp={UserApp} />} />
+        <Route path="/UpdateCourses" element={<UpdateCourses UserApp={UserApp} />} />
+        <Route path="/CourseDetails/:id" element={<Course />} />
         <Route path="/Allcourses" element={<Courses UserApp={UserApp}/>} />
       </Routes>
     </BrowserRouter>
