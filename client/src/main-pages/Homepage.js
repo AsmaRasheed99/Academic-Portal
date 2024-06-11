@@ -1,15 +1,18 @@
-import { Button } from 'flowbite-react'
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
-import HeroSection from '../components/HeroSection'
+import React from "react";
+import HeroSection from "../components/sections/HeroSection";
+import StatistisSection from "../components/sections/StatistisSection";
+import FAQs from "../components/FAQs";
 
-const Homepage = () => {
+const Homepage = (props) => {
 
   return (
-    <div className='flex flex-col gap-3 justify-center items-center h-[100vh]'>
-      <HeroSection/>
-    </div>
-  )
-}
+    <>
+      {" "}
+      <HeroSection props={props}/>
+     <StatistisSection/>
+     <FAQs/>
+    </>
+  );
+};
 
-export default Homepage
+export default Homepage;
