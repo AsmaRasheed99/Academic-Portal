@@ -18,12 +18,37 @@ To get a local copy up and running follow these simple steps:
 
    ```bash
    git clone https://github.com/AsmaRasheed99/Academic-Portal.git
+
+
+2. Navigate to the app directory
+
+   ```bash
+   cd Academic-Portal
    cd client
    npm install
+
+3. Start your application
+
+   ```bash
+   cd client
    npm start
+
+4. Navigate to the server folder
+
+   ```bash
+   
+   cd Academic-Portal
    cd server
    npm install
+
+5. Start your Server
+
+
+   ```bash
+
+   cd server
    nodemon index / node index
+
 
 ## Setting up Environment Variables
 
@@ -43,6 +68,6 @@ This project uses environment variables for configuration. Follow these steps to
    # Secret keyY for signing the JSON WEB TOKEN (optional)
    SECRETKEY = ex: "cFm@ZUv+ga/:lRU"
 
-## Preview 
+## Preview
 
 [Video Preview](https://www.awesomescreenshot.com/video/28547725?key=2e96a49267b3e7b55f11f8af30ae7161)
