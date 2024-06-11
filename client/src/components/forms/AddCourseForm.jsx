@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Button, FileInput, Label, TextInput, Textarea } from "flowbite-react";
 import backgroundImage from '../../images/background.png';
+import Swal from "sweetalert2";
 const AddCourseForm = (props) => {
   const Id = props.props.UserApp?.id;
 
@@ -35,6 +36,15 @@ const AddCourseForm = (props) => {
     try {
       const res = await axios.post(`http://localhost:5000/api/courses`, Data);
       console.log(res);
+      Swal.Fire('Your Course is successfully submitted')
+      setFormData({
+        title: "",
+        category: "",
+        subject: "",
+        description: "",
+        image: "",
+        video: "",
+      })
     } catch (error) {
       console.log(error);
     }

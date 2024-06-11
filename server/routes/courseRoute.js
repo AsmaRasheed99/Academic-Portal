@@ -8,5 +8,5 @@ router.get("/api/getAllCourses", courseController.getAllCourses);
 router.get("/api/getTeacherCourses/:id", courseController.getTeacherCourses);
 router.get("/api/getCourse/:id", courseController.getCourse);
 router.delete('/api/DeleteCourse/:id', courseController.DeleteCourse);
-router.put('/api/UpdateCourse/:id', courseController.UpdateCourse);
+router.put('/api/UpdateCourse/:id', upload,courseController.UpdateCourse);
 module.exports = router;

@@ -8,11 +8,12 @@ const Nav = (props) => {
   const handleLogout = async (e) => {
     e.preventDefault();
      localStorage.removeItem("auth");
+     window.location.href = "http://localhost:3000/";
      console.log("logged out");
   }
 
   return (
-    <Navbar fluid rounded className="shadow-sm">
+    <Navbar fluid rounded className="shadow-md">
       <Navbar.Brand
         as={Link}
         href="https://flowbite-react.com"
@@ -43,10 +44,9 @@ const Nav = (props) => {
 
         <Navbar.Link
           className="text-lg flex  items-center h-full"
-          as={Link}
-          href="#"
+        
         >
-          About us
+         <Link to='/aboutus'>About us</Link> 
         </Navbar.Link>
         <Navbar.Link
           className="text-lg flex  items-center h-full"

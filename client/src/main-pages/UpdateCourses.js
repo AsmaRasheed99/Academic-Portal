@@ -53,10 +53,21 @@ const UpdateCourses = (props) => {
 
   const handleEditSubmit = async () => {
     try {
-      console.log(currentCourse._id)
+      const formData = new FormData();
+      formData.append("title", currentCourse.title);
+      formData.append("category", currentCourse.category);
+      formData.append("subject", currentCourse.subject);
+      formData.append("description", currentCourse.description);
+      if (currentCourse.image) {
+        formData.append("image", currentCourse.image);
+      }
+      if (currentCourse.video) {
+        formData.append("video", currentCourse.video);
+      }
+      console.log(currentCourse._id);
       await axios.put(
         `http://localhost:5000/api/UpdateCourse/${currentCourse._id}`,
-        currentCourse
+        formData
       );
       setCourses(
         courses.map((course) =>
@@ -64,6 +75,7 @@ const UpdateCourses = (props) => {
         )
       );
       setIsEditing(false);
+      TeacherCourses()
       setCurrentCourse(null);
     } catch (error) {
       console.error(error);
@@ -72,7 +84,7 @@ const UpdateCourses = (props) => {
 
   useEffect(() => {
     TeacherCourses();
-  }, []);
+  }, [props.UserApp?.id]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -93,13 +105,12 @@ const UpdateCourses = (props) => {
             <img
               src={`http://localhost:5000/public/images/${course.thumbnail}`}
               alt={`Thumbnail for ${course.title}`}
+              className="h-48"
             />
-            <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+            <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white lg:h-24 h-32">
               {course.title}
             </h5>
-            <p className="font-normal text-gray-700 dark:text-gray-400">
-              {course.description}
-            </p>
+          
             <p className="font-normal text-gray-700 dark:text-gray-400">
               {course.subject}
             </p>
@@ -180,7 +191,8 @@ const UpdateCourses = (props) => {
         <Modal show={showDeleteModal} onClose={() => setShowDeleteModal(false)}>
           <Modal.Header>Delete Course</Modal.Header>
           <Modal.Body>
-            ARE YOU SURE YOU WANT TO DELETE THIS COURSE "{courseToDelete.title}"? 
+            ARE YOU SURE YOU WANT TO DELETE THIS COURSE "{courseToDelete.title}
+            "?
           </Modal.Body>
           <Modal.Footer>
             <Button color="failure" onClick={handleDeleteConfirm}>

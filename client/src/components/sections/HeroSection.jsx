@@ -21,7 +21,7 @@ const HeroSection = (props) => {
             From resources to mentorship, MindQuest provide the tools you need
             to excel in your academic endeavors.
           </p>
-          {props.props.UserApp ? (
+          {props.props?.UserApp ? (
             <>
               <p>
                 <span className="text-4xl text-[#0e7490] font-bold mr-2">Welcome</span> <span className="text-2xl">{props.props.UserApp?.username}</span>

@@ -9,6 +9,8 @@ import Courses from './main-pages/Courses'
 import Course from './main-pages/Course'
 import AddCourse from './main-pages/AddCourse'
 import UpdateCourses from './main-pages/UpdateCourses'
+import About from './main-pages/About'
+import TheFooter from './components/TheFooter'
 
 function App() {
   const [UserApp, setUserApp] = useState("");
@@ -22,7 +24,7 @@ console.log(UserApp)
             authorization: token
             }
             })
-            setUserApp(res.data.user)
+            setUserApp(res.data?.user)
        }
     } catch (error) {
       console.error(error.message)
@@ -39,6 +41,7 @@ console.log(UserApp)
       <Navbar UserApp={UserApp} />
       <Routes>
         <Route path="/" element={<Homepage UserApp={UserApp}/>} />
+        <Route path="/aboutus" element={<About />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<Registrationpage />} />
         <Route path="/AddCourse" element={<AddCourse UserApp={UserApp} />} />
@@ -46,6 +49,7 @@ console.log(UserApp)
         <Route path="/CourseDetails/:id" element={<Course />} />
         <Route path="/Allcourses" element={<Courses UserApp={UserApp}/>} />
       </Routes>
+      <TheFooter/>
     </BrowserRouter>
   )
 }

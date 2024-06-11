@@ -7,7 +7,7 @@ const createCourse = async (req, res) => {
   const videoName = req.files?.video[0]?.filename;
   const srcImage = `http://localhost:5000/images/${imageName}`;
   const srcVideo = `http://localhost:5000/videos/${videoName}`;
-  console.log(srcVideo , srcImage);
+  console.log(srcVideo, srcImage);
   try {
     const userRole = await User.findOne({ _id: Id });
     if (userRole.role === "teacher") {
@@ -31,13 +31,30 @@ const createCourse = async (req, res) => {
 
 const getAllCourses = async (req, res) => {
   try {
-    const courses = await Course.find();
+    const courses = await Course.aggregate([
+      {
+        $lookup: {
+          from: 'users', // collection name in the database
+          localField: 'teacherId',
+          foreignField: '_id',
+          as: 'teacherDetails'
+        }
+      },
+      {
+        $unwind: {
+          path: '$teacherDetails',
+          preserveNullAndEmptyArrays: true // if there is no matching teacher, still include the course
+        }
+      }
+    ]);
+
     return res.json(courses);
   } catch (error) {
     console.log(error);
     return res.status(500).json({ error: error.message });
   }
 };
+
 
 const getTeacherCourses = async (req, res) => {
   const Id = req.params.id;
@@ -71,22 +88,29 @@ const DeleteCourse = async (req, res) => {
   }
 };
 const UpdateCourse = async (req, res) => {
-  // console.log(req.body);
+  console.log(req.files);
   const { title, subject, category, description } = req.body;
   const Id = req.params.id;
-  const imageName = req.files?.image[0]?.filename;
-  const videoName = req.files?.video[0]?.filename;
-console.log(Id)
+  const imageName = req.files?.image ? req.files?.image[0]?.filename : "";
+  const videoName = req.files?.video ? req.files?.video[0]?.filename : "";
+  const data = {
+    title: title,
+    subject: subject,
+    category: category,
+    description: description,
+  };
+  if (imageName) {
+    data.thumbnail = imageName;
+  }
+  if (videoName) {
+    data.video = videoName;
+  }
+  console.log(Id);
   try {
     const updated = await Course.findByIdAndUpdate(Id, {
-      title: title,
-      subject: subject,
-      category: category,
-      description: description,
-      thumbnail: imageName,
-      video: videoName,
+      ...data
     });
-    console.log("updated", updated)
+    console.log("updated", updated);
     return res.json(updated);
   } catch (error) {
     return res.status(500).json({ error: error.message });

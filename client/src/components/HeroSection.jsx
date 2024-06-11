@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-
+import headerImg from '../images/online-education-concept_52683-8291.jpg'
 const HeroSection = () => {
     const navigate = useNavigate()
 
@@ -45,7 +45,7 @@ Sign up as a student      </button>
     </div>
     <div className="hidden lg:mt-0 lg:col-span-5 lg:flex">
       <img
-        src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/hero/phone-mockup.png"
+        src={headerImg}
         alt="mockup"
       />
     </div>
