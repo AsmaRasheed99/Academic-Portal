@@ -17,7 +17,7 @@ To get a local copy up and running follow these simple steps:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/your-project.git
+   git clone https://github.com/AsmaRasheed99/Academic-Portal.git
    cd client
    npm install
    npm start
@@ -25,3 +25,20 @@ To get a local copy up and running follow these simple steps:
    npm install
    nodemon index / node index
 
+## Setting up Environment Variables
+
+This project uses environment variables for configuration. Follow these steps to set up your `.env` file:
+
+1. Create a `.env` file in the server folder.
+
+2. Add the following environment variables to your `.env` file:
+
+   ```plaintext
+   # MongoDB connection URI
+   dbURI=your_mongodb_connection_uri
+
+   # Port for the server (optional)
+   PORT=5000
+
+   # Secret keyY for signing the JSON WEB TOKEN (optional)
+   SECRETKEY = ex: "cFm@ZUv+ga/:lRU"
