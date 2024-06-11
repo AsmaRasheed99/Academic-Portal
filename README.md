@@ -18,11 +18,13 @@ To get a local copy up and running follow these simple steps:
 
    ```bash
    git clone https://github.com/AsmaRasheed99/Academic-Portal.git
+   
    ```bash
    cd Academic-Portal
    cd client
    npm install
    npm start
+   
    ```bash
    cd Academic-Portal
    cd server
