@@ -1,43 +1,72 @@
 import axios from "axios";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { Button, Card } from "flowbite-react";
+import { useNavigate } from "react-router-dom";
 
 const Courses = (props) => {
 
+  const Navigate = useNavigate()
+  const [Courses, setCourses] = useState([]);
+
   const fetchCourses = async () => {
-      try {
+    try {
       const res = await axios.get("http://localhost:5000/api/getAllCourses");
-      // console.log(res.data);
+      setCourses(res.data);
     } catch (error) {
-     console.error(error);
+      console.error(error);
     }
   };
+
   useEffect(() => {
     fetchCourses();
-    TeacherCourses()
-    OneCourse()
   }, []);
 
-  const TeacherCourses = async () => {
-    try {
-      const res = await axios.get(`http://localhost:5000/api/getTeacherCourses/${props.UserApp.id}`);
-      // console.log(res.data);
-    } catch (error) {
-     console.error(error);
-    }
+
+
+  const handleNavigate = (e , id) => {
+    e.preventDefault();
+    Navigate(`/CourseDetails/${id}`)
   }
 
-  const OneCourse = async () => {
-    try {
-      const res = await axios.get(`http://localhost:5000/api/getCourse/66674dd507f2de3a68175fe1`);
-      console.log(res.data);
-    } catch (error) {
-     console.error(error);
-    }
-  }
-
-
-
-  return <div>Cour g g g  ggggggggggggggggses</div>;
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mx-5 md:mx-5 lg:mx-0 lg:ms-10 my-10">
+      {Courses.map((course) => (
+        <Card
+          key={course._id}
+          className="max-w-sm"
+          imgAlt={`Thumbnail for ${course.title}`}
+          imgSrc={`http://localhost:5000/${course.thumbnail}`}
+          
+        >
+       
+          <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+            {course.title}
+          </h5>
+          <p className="font-normal text-gray-700 dark:text-gray-400">
+            {course.description}
+          </p>
+          <p className="font-normal text-gray-700 dark:text-gray-400">
+            {course.subject}
+          </p>
+          <Button onClick={(e) => {handleNavigate(e , course._id)}}>
+            Watch
+            <svg
+              className="-mr-1 ml-2 h-4 w-4"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fillRule="evenodd"
+                d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </Button>
+        </Card>
+      ))}
+    </div>
+  );
 };
 
 export default Courses;
