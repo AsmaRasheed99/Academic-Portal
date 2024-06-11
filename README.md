@@ -42,3 +42,7 @@ This project uses environment variables for configuration. Follow these steps to
 
    # Secret keyY for signing the JSON WEB TOKEN (optional)
    SECRETKEY = ex: "cFm@ZUv+ga/:lRU"
+
+## Preview 
+
+[Video Preview](https://www.awesomescreenshot.com/video/28547725?key=2e96a49267b3e7b55f11f8af30ae7161)
