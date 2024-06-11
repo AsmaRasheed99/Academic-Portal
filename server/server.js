@@ -24,7 +24,9 @@ app.use(errorHandler);
 app.use(Protected);
 
 const path = require("path");
-app.use("/public", express.static(path.join(__dirname, "public")));
+app.use('/public', express.static(path.join(__dirname, 'public')));
+app.use('/images', express.static(path.join(__dirname, 'public/images')));
+app.use('/videos', express.static(path.join(__dirname, 'public/videos')));
 
 
 
